@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Ceci n'est pas une page</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3ead8;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #2b2b2b;
+    overflow: hidden;
+  }
+  .frame {
+    position: relative;
+    background: #fbf7ee;
+    padding: 48px 64px 40px;
+    border: 18px solid #6b4423;
+    outline: 4px solid #c9a227;
+    outline-offset: -26px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    max-width: 90vw;
+  }
+  .sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(#bcd8ee, #fbf7ee 70%);
+    z-index: 0;
+  }
+  .content { position: relative; z-index: 1; }
+  .code {
+    font-size: clamp(5rem, 18vw, 11rem);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    animation: float 4s ease-in-out infinite;
+  }
+  .cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.9;
+    z-index: 0;
+    animation: drift linear infinite;
+  }
+  .cloud.one { width: 90px; height: 28px; top: 30px; left: -100px; animation-duration: 18s; }
+  .cloud.two { width: 60px; height: 20px; top: 80px; left: -80px; animation-duration: 26s; animation-delay: -10s; }
+  .caption { font-style: italic; font-size: clamp(1.3rem, 4vw, 2rem); margin-top: 8px; }
+  .sub { margin-top: 18px; font-family: Helvetica, Arial, sans-serif; font-size: 0.95rem; color: #555; }
+  .plaque {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 8px 18px;
+    background: #c9a227;
+    color: #2b2b2b;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .plaque:hover { background: #e0b92f; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes drift { from { transform: translateX(0); } to { transform: translateX(700px); } }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <div class="sky"></div>
+    <div class="cloud one"></div>
+    <div class="cloud two"></div>
+    <div class="content">
+      <div class="code">404</div>
+      <p class="caption">Ceci n'est pas une page</p>
+      <p class="sub">The page you are looking for was never painted.</p>
+      <a class="plaque" href="/">Return to the gallery</a>
+    </div>
+  </div>
+</body>
+</html>

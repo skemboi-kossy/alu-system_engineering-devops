@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Installs Nginx with a redirect and a custom 404 page containing "Ceci n'est pas une page"
+apt-get -y update
+apt-get -y install nginx
+
+echo "Holberton School for the win!" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+CONFIG="/etc/nginx/sites-available/default"
+if ! grep -q "redirect_me" "$CONFIG"; then
+    sed -i '/server_name _;/a \\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' "$CONFIG"
+fi
+if ! grep -q "error_page 404" "$CONFIG"; then
+    sed -i '/server_name _;/a \\terror_page 404 /404.html;' "$CONFIG"
+fi
+
+service nginx restart
