@@ -33,4 +33,10 @@ listen web-backend
     server 7429-web-02 18.130.180.117:80 check
 EOF
 
+# HAProxy 2.x lowercases header names: keep X-Served-By in its original case
+if haproxy -v | grep -Eq "version (1\.9|[2-9])"; then
+    sed -i '/^global/a \\th1-case-adjust x-served-by X-Served-By' /etc/haproxy/haproxy.cfg
+    sed -i '/^listen web-backend/a \\toption h1-case-adjust-bogus-client' /etc/haproxy/haproxy.cfg
+fi
+
 service haproxy restart
